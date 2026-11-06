@@ -1,84 +1,49 @@
-Christoffel's Menu Manager
-Description
-Christoffel's Menu Manager is  React Native application that allows chefs that work at that restaurant to easily manage menu items by adding or removing them.
-This mobile application provides a form where the user can enter a dish name, description, course, and price.
-When saved, it displays a list below the form.
+# Christoffel's Menu Manager
 
-Features 
-- Add new menu items 
-- Enter a dish name and description
-- Select a course 
- *Starter
- *Main course 
- *Dessert
-- Enter price using ZAR (South African Rands{R}) 
-- Validate required information before you save
-- Validate if price is greater than 0
-- Display number of menu items 
-- Display saved menu items with their name, course, description, and price
-- Clear the form after successfully adding an item
-- Show success and error alerts
+**MAST5112 PoE: Final Part (Part 3)**
+Thokozile Bridget Ndaba | ST10512244
 
-Technologies Used
+A React Native (Expo) mobile app that lets a restaurant chef manage the menu: add, edit, delete, search, filter and view statistics for menu items.
 
-- React Native
-- JavaScript
-- React Hooks ("useState")
-- "@react-native-picker/picker"
-- Git
-- GitHub
+## How to run
 
-How It Works
+1. Install dependencies: `npm install`
+2. Start the app: `npx expo start`
+3. Scan the QR code with the Expo Go app on an Android phone (same Wi-Fi as the computer). If that fails, use `npx expo start --tunnel`.
 
-The application uses React Native components to create the mobile interface.
+## Features
 
-The "useState" hook is used to store the information entered by the user, including:
+- Add a menu item (dish name, description, course, price) with validation
+- Edit an existing menu item and update its details
+- Delete a menu item (with a confirmation prompt)
+- Search menu items by dish name
+- Filter menu items by course (Starter, Main Course, Dessert) and clear the filter
+- Menu statistics: total number of items, average price, and number of items per course
 
-- "dishName" – stores the name of the dish
-- "description" – stores the dish description
-- "course" – stores the selected course
-- "price" – stores the price
-- "menuItems" – stores all the menu items added by the user
+## Change log (changes since Part 2)
 
-When the Save Menu Item button is pressed, the "handleAddItem" function checks that all required fields have been completed.
+### New features
+- Added **Edit** button on each dish: opens a pop-up form pre-filled with the dish's details; saved changes show in the list immediately.
+- Added **Delete** button on each dish: asks for confirmation before removing the item.
+- Added a **search box** that filters the list by dish name as the user types.
+- Added **course filter buttons** (All, Starter, Main Course, Dessert) and a "Clear Search & Filter" option. Search and filter work together.
+- Added a **statistics panel** showing total items, average price and items per course. It updates automatically when items are added, edited or deleted.
 
-The application also checks that the price is a valid number greater than zero. If the information is valid, a new menu item is created and added to the menu list.
+### Refactoring
+- Created reusable components: `LabelledInput`, `MenuItemCard` and `MenuStatistics`, so the same code is not repeated.
+- Created a single `COURSES` list used by the form, the filter buttons and the statistics, instead of typing the course names in several places.
+- Created one shared `validateFields` function used by both the Add and Edit forms.
+- Used clearer variable and function names and added comments explaining each section.
 
-The "FlatList" component is then used to display the saved menu items.
+### User experience improvements
+- The whole screen is scrollable so all sections fit on smaller phones.
+- Success and error messages for adding, editing, deleting and invalid input.
+- Messages when the menu is empty or when no items match the search or filter.
+- The item count shows how many items match the filter (e.g. "Menu Items (2 of 5)").
+- Consistent colours, buttons and layout across the screen and the edit pop-up.
+- Title changed to "Christoffel's Menu Manager" to match the Part 1 scenario.
 
-Validation
+## Technologies
 
-The application includes validation to prevent incomplete or incorrect information from being saved.
-
-If a required field is empty, the application displays a Missing Information alert.
-
-If the price is not a valid positive number, the application displays an Invalid Price alert.
-
-After a menu item is successfully saved, the application displays a success message and clears the form.
-
-Project Structure
-
-The main application code is contained in the "App.js" file.
-
-The application uses React Native components such as:
-
-- "SafeAreaView"
-- "View"
-- "Text"
-- "TextInput"
-- "TouchableOpacity"
-- "FlatList"
-- "Alert"
-- "Picker"
-
-"StyleSheet" is used to control the appearance and layout of the application.
-
-Version Control
-
-Git was used to track the project and GitHub was used to store the repository online.
-
-The project has been pushed to the "main" branch of the GitHub repository.
-
-Author
-
-Created by Bridget Ndaba.
+- React Native with Expo
+- `@react-native-picker/picker` for the course dropdown
